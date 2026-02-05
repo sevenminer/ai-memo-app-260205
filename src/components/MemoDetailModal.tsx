@@ -6,16 +6,8 @@ import '@uiw/react-md-editor/markdown-editor.css'
 import { Memo, MEMO_CATEGORIES } from '@/types/memo'
 
 // SSR 이슈 방지를 위한 dynamic import
-const MDEditor = dynamic(() => import('@uiw/react-md-editor'), {
-  ssr: false,
-})
-
-// Markdown 컴포넌트 별도 import
 const Markdown = dynamic(
-  () =>
-    import('@uiw/react-md-editor').then(mod => {
-      return mod.default?.Markdown || mod.Markdown
-    }),
+  () => import('@uiw/react-markdown-preview').then(mod => mod.default),
   {
     ssr: false,
   }
