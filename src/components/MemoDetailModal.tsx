@@ -3,11 +3,12 @@
 import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import '@uiw/react-md-editor/markdown-editor.css'
+import '@uiw/react-markdown-preview/markdown.css'
 import { Memo, MEMO_CATEGORIES } from '@/types/memo'
 
 // SSR 이슈 방지를 위한 dynamic import
-const Markdown = dynamic(
-  () => import('@uiw/react-markdown-preview').then(mod => mod.default),
+const MarkdownPreview = dynamic(
+  () => import('@uiw/react-markdown-preview'),
   {
     ssr: false,
   }
@@ -253,7 +254,7 @@ export default function MemoDetailModal({
           {/* 내용 */}
           <div className="mb-6" data-color-mode="light">
             <div className="prose max-w-none [&_*]:!text-gray-700">
-              <Markdown source={memo.content} />
+              <MarkdownPreview source={memo.content} />
             </div>
           </div>
 
